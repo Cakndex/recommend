@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <meta name="robots" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="../oyqj-0923-5 - 副本/static/image/favicon.ico" />
+    <!-- PAGE TITLE HERE -->
+    <title>职荐</title>
+
+    <link href="static/css/style.css" rel="stylesheet">
+
+</head>
+
+<body class="vh-100">
+    <div class="authincation h-100">
+        <div class="container h-100">
+            <div class="row justify-content-center h-100 align-items-center">
+                <div class="col-md-6">
+                    <div class="authincation-content">
+                        <div class="row no-gutters">
+                            <div class="col-xl-12">
+                                <div class="auth-form">
+                                    <div class="text-center mb-3">
+                                        <img src="../positon-recommen/static/image/1280X1280.PNG" alt="" width="100" >
+                                    </div>
+                                    <h4 class="text-center mb-4" >Sign in your account</h4>
+                                    <div>
+                                        <div class="mb-3">
+                                            <label class="mb-1"><strong>Uersname</strong></label>
+                                            <input type="text" class="form-control" placeholder="username">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="mb-1"><strong>Password</strong></label>
+                                            <input type="password" class="form-control" placeholder="Password">
+                                        </div>
+
+                                        <div class="row d-flex justify-content-between mt-4 mb-2">
+                                            <div class="mb-3">
+                                                <div class="form-check custom-checkbox ms-1">
+                                                    <input type="checkbox" class="form-check-input"
+                                                        id="basic_checkbox_1">
+                                                    <label class="form-check-label" for="basic_checkbox_1">Remember my
+                                                        preference</label>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <a href="page-forgot-password.html">Forgot Password?</a>
+                                            </div>
+                                        </div>
+                                        <div class="text-center">
+                                            <button  class="btn btn-primary btn-block" id="login" >Sign Me In</button>
+                                        </div>
+                                    </div>
+                                    <div class="new-account mt-3">
+                                        <p>Don't have an account? <a class="text-primary" href="page-register.html">Sign
+                                                up</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- 登录 -->
+    <script type="module">
+        var login = document.getElementById('login');
+
+        function login123() {
+            var username = document.getElementsByClassName('form-control')[0].value;
+            var password = document.getElementsByClassName('form-control')[1].value;
+
+            axios.post('http://192.168.177.112:15213/login', {
+                username: username,
+                password: password,
+              
+            })
+                .then(function (response) {
+                    alert('登录成功')
+                    console.log(response);
+                    const token = response.data.data.message;
+                    localStorage.setItem('token', token);
+                    window.location.href = 'index.html';
+                    // 处理成功响应的逻辑
+                })
+                .catch(function (error) {
+                    alert('登录失败，请检查用户名和密码')
+                    console.error(error);
+                    // 处理错误的逻辑
+                });
+        }
+        login.addEventListener('click', function () {
+            login123();
+        });
+    </script>
+
+    <!--**********************************
+        Scripts
+    ***********************************-->
+    <!-- Required vendors -->
+    <script src="static/js/global.min.js"></script>
+    <!-- <script src="static/js/custom.min.js"></script> -->
+    <script src="static/js/dlabnav-init.js"></script>
+    <script src="static/js/styleSwitcher.js"></script>
+</body>
+
+</html>

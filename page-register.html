@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <meta name="robots" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="../oyqj-0923-5 - 副本/static/image/favicon.ico" />
+
+    <!-- PAGE TITLE HERE -->
+    <title>职荐</title>
+
+    <link href="static/css/style.css" rel="stylesheet">
+
+</head>
+
+<body class="vh-100">
+    <div class="authincation h-100">
+        <div class="container h-100">
+            <div class="row justify-content-center h-100 align-items-center">
+                <div class="col-md-6">
+                    <div class="authincation-content">
+                        <div class="row no-gutters">
+                            <div class="col-xl-12">
+                                <div class="auth-form">
+                                    <div class="text-center mb-3">
+                                        <img src="../positon-recommen/static/image/1280X1280.PNG" alt="" width="100">
+
+                                    </div>
+                                    <h4 class="text-center mb-4">Sign up your account</h4>
+
+                                    <div class="mb-3">
+                                        <label class="mb-1"><strong>Username</strong></label>
+                                        <input type="text" class="form-control" placeholder="username">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="mb-1"><strong>Password</strong></label>
+                                        <input type="password" class="form-control" placeholder="Password">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="mb-1"><strong>Telephone</strong></label>
+                                        <input type="phone" class="form-control" placeholder="xxx-xxxx-xxxx">
+                                    </div>
+                                    <div class="text-center mt-4">
+                                        <button class="btn btn-primary btn-block" id="1">Sign me up
+                                        </button>
+                                    </div>
+
+
+                                    <div class="new-account mt-3">
+                                        <p>Already have an account? <a class="text-primary" href="page-login.html">Sign
+                                                in</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <!-- 注册 -->
+    <script>
+        var signUpButton = document.getElementById('1');
+        signUpButton.addEventListener('click', function (event) {
+
+            // 获取表单中的输入值
+            var username = document.querySelector('input[type="text"]').value;
+            var password = document.querySelector('input[type="password"]').value;
+            var telephone = document.querySelector('input[type="phone"]').value;
+
+            // 在这里可以执行注册逻辑，将用户输入的信息发送到服务器进行处理
+            // 判断输入值是否为空
+            if (username === '') {
+                alert('Please enter a username')
+                return
+            }
+            if (password === '') {
+                alert('Please enter a password')
+                return
+            }
+            if (telephone === '') {
+                alert('Please enter a password')
+                return
+            }
+            axios.post('http://192.168.177.112:15213/signup', {
+                username: username,
+                password: password,
+                phone: telephone
+            })
+                .then(function (response) {
+                    alert('注册成功')
+                    console.log(response);
+                    // 处理成功响应的逻辑
+                })
+                .catch(function (error) {
+                    console.error(error);
+                    // 处理错误的逻辑
+                });
+
+        });
+    </script>
+
+    <!--**********************************
+	Scripts
+***********************************-->
+    <!-- Required vendors -->
+    <script src="static/js/global.min.js"></script>
+    <script src="static/js/custom.min.js"></script>
+    <script src="static/js/dlabnav-init.js"></script>
+    <script src="static/js/styleSwitcher.js"></script>
+</body>
+
+</html>
